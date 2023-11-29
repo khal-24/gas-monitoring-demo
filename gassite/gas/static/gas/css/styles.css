@@ -1,0 +1,40 @@
+html,
+body {
+  font-family: "Arial";
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  color: #444;
+}
+.row {
+  display: inline-block;
+}
+.h1 {
+  text-align: center;
+}
+.content-text {
+  font-family: "Arial";
+}
+.block {
+  display: block;
+  background-color: #ccc;
+  width: 1000px;
+  height: 580px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+}
+.map {
+  width: 1000px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}

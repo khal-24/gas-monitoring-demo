@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <title>Мониторинг газа</title>
+    <link
+            type="text/css"
+            href="{% static 'gas/css/styles.css' %}"
+            rel="stylesheet"
+    />
+    <script src="{% static '/gas/js/vue.global.prod.js' %}"></script>
+    <script src="{% static '/gas/js/highcharts.js' %}"></script>
+    <script src="{% static 'gas/js/utils.js' %}"></script>
+    <script src="{% static '/gas/js/chart.js' %}"></script>
+</head>
+<body>
+<h1 class="h1">Мониторинг газа</h1>
+<div class="block">
+    <div class="map">{{ map|safe }}</div>
+</div>
+{% verbatim %}
+<div id="app">
+    <div class="chart" id="char-container"></div>
+    <div class="measurements">
+        <table class="table">
+            <thead>
+            <tr>
+                <th
+                        v-for="title in ['№ измерения', 'Передатчик', 'Освещённость', 'Температура датчика CO2', 'CO2', 'Температура датчика CH4', 'CH4', 'Время измерения']"
+                >
+                    {{title}}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr></tr>
+            <tr v-for="msr in measurements">
+                <!--'№ измерения'-->
+                <th>
+                    <div v-if="msr.pk">{{msr.pk}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'Передатчик'-->
+                <th>
+                    <div v-if="msr.transmitter">{{msr.transmitter}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'Освещённость'-->
+                <th>
+                    <div v-if="msr.ps">{{msr.ps}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'Температура датчика CO2'-->
+                <th>
+                    <div v-if="msr.tco2">{{msr.tco2}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'CO2'-->
+                <th>
+                    <div v-if="msr.co2">{{msr.co2}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'Температура датчика CH4'-->
+                <th>
+                    <div v-if="msr.tch4">{{msr.tch4}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'CH4'-->
+                <th>
+                    <div v-if="msr.ch4">{{msr.ch4}}</div>
+                    <div v-else>-</div>
+                </th>
+                <!--'Время измерения'-->
+                <th>
+                    <div v-if="msr.time_create">{{formatTime(msr.time_create)}}</div>
+                    <div v-else>-</div>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endverbatim %}
+<script src="{% static 'gas/js/app.js' %}"></script>
+</body>
+</html>
